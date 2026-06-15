@@ -622,6 +622,15 @@ poetry run ccwb status
 
 ### Step 4: Create Distribution Package
 
+If you deployed everything using Terraform, run this before:
+
+```bash
+export CCWB_TERRAFORM_OUTPUTS='{
+  "FederationType": "direct",
+  "FederatedRoleArn": "arn:aws:iam::<bedrock-account-id>:role/<bedrock-role-name>"
+}'
+```
+
 Build the package for end users:
 
 ```bash
