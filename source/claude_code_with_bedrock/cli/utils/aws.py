@@ -87,6 +87,13 @@ def check_stack_exists(stack_name: str, region: str) -> bool:
 
 
 def get_stack_outputs(stack_name: str, region: str) -> dict[str, str]:
+    import json
+    import os
+
+    override = os.environ.get("CCWB_TERRAFORM_OUTPUTS")
+    if override:
+        return json.loads(override)
+
     """Get outputs from a CloudFormation stack."""
     try:
         client = boto3.client("cloudformation", region_name=region)
